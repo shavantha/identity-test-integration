@@ -58,6 +58,11 @@
             <stringProp name="Argument.value">${__property(carbonServer)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
+          <elementProp name="tomcatHost" elementType="Argument">
+            <stringProp name="Argument.name">tomcatHost</stringProp>
+            <stringProp name="Argument.value">${__property(tomcatHost)}</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
           <elementProp name="tomcatPort" elementType="Argument">
             <stringProp name="Argument.name">tomcatPort</stringProp>
             <stringProp name="Argument.value">${__property(tomcatPort)}</stringProp>
@@ -111,11 +116,6 @@
           <elementProp name="GoogleClientSecret" elementType="Argument">
             <stringProp name="Argument.name">GoogleClientSecret</stringProp>
             <stringProp name="Argument.value">${__property(GoogleClientSecret)}</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="tomcatHost" elementType="Argument">
-            <stringProp name="Argument.name">tomcatHost</stringProp>
-            <stringProp name="Argument.value">${__property(tomcatHost)}</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="idp4Name" elementType="Argument">
@@ -2517,6 +2517,7 @@ import java.lang.String;
 import java.util.concurrent.*;
 import com.gargoylesoftware.htmlunit.*;
 import com.gargoylesoftware.htmlunit.BrowserVersion;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 try {
 		public HtmlUnitDriver driver = new HtmlUnitDriver(BrowserVersion.CHROME, true);
@@ -2529,7 +2530,8 @@ try {
 
 		String AppURL = protocole + tomcathost + seperator + tomcatport + url;
 
-		System.out.println(AppURL);
+	
+
 		
 		driver.get(AppURL);
 		driver.manage().timeouts().implicitlyWait(15,TimeUnit.SECONDS);
@@ -2548,6 +2550,10 @@ try {
 		WebElement button = driver.findElement(By.id(&quot;allow&quot;));
 		button.click();
 
+         // WebDriverWait wait = new WebDriverWait(driver, 30);// 
+         // wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(&quot;claim_mand_emailAddress&quot;)));
+         
+         // driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		WebElement email=driver.findElement(By.id(&quot;claim_mand_emailAddress&quot;));
 		email.clear();
 		email.sendKeys(new String[] {vars.get(&quot;twitterEmail&quot;)});
@@ -3711,11 +3717,11 @@ try {
           <hashTree>
             <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
               <collectionProp name="Asserion.test_strings">
-                <stringProp name="51508">400</stringProp>
+                <stringProp name="-322103851">HTTP/1.1 400 Bad Request</stringProp>
               </collectionProp>
-              <stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+              <stringProp name="Assertion.test_field">Assertion.response_headers</stringProp>
               <boolProp name="Assertion.assume_success">true</boolProp>
-              <intProp name="Assertion.test_type">8</intProp>
+              <intProp name="Assertion.test_type">16</intProp>
             </ResponseAssertion>
             <hashTree/>
           </hashTree>
@@ -4627,7 +4633,7 @@ try {
             <connectTime>true</connectTime>
           </value>
         </objProp>
-        <stringProp name="filename">scenario-21-results.jtl</stringProp>
+        <stringProp name="filename">/home/shavantha/Desktop/gitstuff/identity-test-integration/scenario21/scenario-21-results.jtl</stringProp>
       </ResultCollector>
       <hashTree/>
     </hashTree>
